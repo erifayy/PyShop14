@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for product in products %}
+        <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="picture">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="{% url 'detail' product.id %}">{{ product.name }}</a></h5>
+        <p class="card-text">{{ product.description|truncatechars:50 }}</p>
+          {% if product.status == 'in stock' %}
+        <p style="color: green;" class="card-text">{{ product.status }}</p>
+        {% elif product.status == 'awaiting' %}
+          <p style="color: blue;" class="card-text">{{ product.status }}</p>
+        {% else %}
+          <p style="color: red;" class="card-text">{{ product.status }}</p>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+{% endblock %}

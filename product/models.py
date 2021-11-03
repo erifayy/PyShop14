@@ -8,7 +8,9 @@ from django.db.models.enums import Choices
 #TODO: Notebooks --> ACER, MacBook, ASUS
 #TODO: Accessories --> Earphones, PowerBank
 #TODO: по 2 продукта на каждую категорию
- 
+
+
+
 
 class Category(models.Model):
     title = models.CharField(max_length=50, unique=True)
@@ -17,7 +19,7 @@ class Category(models.Model):
 
     def __str__(self) -> str:
         if self.parent:
-            return f'{self.parent} --> {self.title}'
+            return f"{self.parent} --> {self.title}"
         return self.title
 
 
@@ -33,7 +35,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
     image = models.ImageField(upload_to='prod_images')
-    catagory = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
 
     def __str__(self):
         return self.name

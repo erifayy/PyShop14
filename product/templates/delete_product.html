@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Are you sure ypu wanna delete this product?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Yes :3</button>
+    <a class="btn btn-secondary" href="{% url 'detail' product.id %}" role="button">No :3</a>
+</form>
+{% endblock %}
